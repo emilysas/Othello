@@ -2,6 +2,6 @@
 {
     public interface ICounter
     {
-        string Colour { get; set; }
+        string ColourDisplayed { get; }
     }
 }

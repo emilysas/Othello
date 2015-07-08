@@ -2,17 +2,16 @@
 {
     public class Counter : ICounter
     {
-        private string _colour;
+        public string ColourDisplayed { get; private set; }
 
-        public Counter(string colour)
+        public Counter (string colour)
         {
-            _colour = colour;
+            ColourDisplayed = colour;
         }
 
-        public string Colour
+        public void Flip()
         {
-            get { return _colour; }
-            set { _colour = value; }
+            ColourDisplayed = ColourDisplayed == "white" ? "black" : "white";
         }
     }
 }

@@ -7,20 +7,14 @@ namespace UnitTests
     [TestFixture]
     public class CounterTests
     {
-        [Test]
-        public void CountersShouldHaveAColour()
+        [TestCase( "white", "black")]
+        [TestCase( "black", "white")]
+        public void ACounterCanFlipBetweenColours(string originalColour, string newColour)
         {
-            var counter = new Counter("black");
-            Assert.That("black", Is.EqualTo(counter.Colour));
-        }
-
-        [Test]
-        public void ACounterCanChangeColour()
-        {
-            var counter = new Counter("black");
-            counter.Colour = "white";
-            Assert.That("white", Is.EqualTo(counter.Colour));
-
+            var counter = new Counter(originalColour);
+            Assert.That(originalColour, Is.EqualTo(counter.ColourDisplayed));
+            counter.Flip();
+            Assert.That(newColour, Is.EqualTo(counter.ColourDisplayed));
         }
     }
 }
