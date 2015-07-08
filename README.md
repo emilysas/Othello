@@ -43,7 +43,7 @@ Classes
 -------
 
 * Game
-* Board
+* Board - this is the 'Grid' class from my [Game of Life](https://github.com/emilysas/GameOfLife) repo
 * Counter
 * Player
 
