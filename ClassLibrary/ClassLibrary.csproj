@@ -30,9 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GoLClassLibrary">
-      <HintPath>..\ThirdPartyComponents\GoLClassLibrary.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Board.cs" />
+    <Compile Include="IBoard.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Counter.cs" />
     <Compile Include="ICounter.cs" />
