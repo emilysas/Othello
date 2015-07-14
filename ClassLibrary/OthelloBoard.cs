@@ -15,7 +15,12 @@ namespace ClassLibrary
 
         private void PlaceInitialPieces()
         {
-            
+            PlacePiece("D4", "white");
+            PlacePiece("E5", "white");
+            PlacePiece("D5", "black");
+            PlacePiece("E4", "black");
         }
+
+
     }
 }
