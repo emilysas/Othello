@@ -1,5 +1,8 @@
 ﻿
+using System;
+using System.CodeDom;
 using System.Linq;
+using System.Runtime.InteropServices;
 using NUnit.Framework;
 using ClassLibrary;
 
@@ -9,21 +12,13 @@ namespace UnitTests
     public class BoardTests
     {
 
-//        [TestCase(4, 4, "D4")]
-//        [TestCase(8, 10, "J8")]
-//        [TestCase(27, 28, "AB27")]
-//        [TestCase(99, 27, "AA99")]
-//        [TestCase(99, 247, "IM99")]
-//        [TestCase(8, 703, "AAA8")]
-//        [TestCase(8, 1119, "AQA8")]
-//        public void ABoardContainsAlphaNumericKeys(int width, int length, string result)
-//        {
-//            var board = new Board(width, length);
-//            string last = board._board.Keys.Last();
-//            Assert.That(last, Is.EqualTo(result));
-//        }
-
-
+        [Test]
+        public void ABoardCanFindNeighbouringSquares()
+        {
+            var board = new Board(8, 8);
+            board.PlacePiece("A1", "black");
+            Assert.Throws<Exception>(() => board.PlacePiece("A1", "white"));
+        }
 
 
 

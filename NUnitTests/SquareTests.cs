@@ -14,7 +14,7 @@ namespace UnitTests
         {
             var square = new Square<Counter>("A1");
             var counter = new Counter(originalContents);
-            square.placePiece(counter);
+            square.PlacePiece(counter);
             counter.Flip();
             Assert.That(square.Contents().ColourDisplayed, Is.EqualTo(newContents));
         }
