@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClassLibrary
+namespace NUnitTests
 {
-    public interface INamedThing
+    class SquareTests
     {
-        string Name { get; set; }
     }
 }

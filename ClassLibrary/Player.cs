@@ -1,7 +1,7 @@
 ﻿
 namespace ClassLibrary
 {
-    public class Player : IPlayer
+    public class Player : INamedThing
     {
         private IBoard _board;
 
@@ -11,19 +11,13 @@ namespace ClassLibrary
             _board = board;
         }
 
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
         public string PlayingColour { get; set; }
 
         public void PlaceCounter(string cell)
         {
-            try
-            {
-             //   _board.ReceiveCounter(cell);
-            }
-            catch
-            {
-            }
+
         }
     }
 }
