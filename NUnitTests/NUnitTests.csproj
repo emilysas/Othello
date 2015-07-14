@@ -49,6 +49,7 @@
     <Compile Include="CounterTests.cs" />
     <Compile Include="PlayerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SquareTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

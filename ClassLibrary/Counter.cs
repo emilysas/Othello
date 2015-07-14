@@ -1,4 +1,6 @@
-﻿namespace ClassLibrary
+﻿using System.Collections;
+
+namespace ClassLibrary
 {
     public class Counter : ICounter
     {
@@ -11,7 +13,18 @@
 
         public void Flip()
         {
-            ColourDisplayed = ColourDisplayed == "white" ? "black" : "white";
+            switch (ColourDisplayed)
+            {
+                case("white") :
+                    ColourDisplayed = "black";
+                    break;
+                case("black") :
+                    ColourDisplayed = "white";
+                    break;
+                case("empty") :
+                    ColourDisplayed = "empty";
+                    break;
+            }
         }
     }
 }

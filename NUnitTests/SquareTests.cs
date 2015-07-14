@@ -1,12 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NUnit.Framework;
+using ClassLibrary;
 
-namespace NUnitTests
+namespace UnitTests
 {
-    class SquareTests
+    [TestFixture]
+    public class SquareTests
     {
+
+        [TestCase("black", "white")]
+        [TestCase("white", "black")]
+        [TestCase("empty", "empty")]
+        public void ASquareKnowsItsContents(string newContents, string originalContents)
+        {
+            var square = new Square<Counter>("A1");
+            var counter = new Counter(originalContents);
+            square.placePiece(counter);
+            counter.Flip();
+            Assert.That(square.Contents().ColourDisplayed, Is.EqualTo(newContents));
+        }
+
     }
 }
