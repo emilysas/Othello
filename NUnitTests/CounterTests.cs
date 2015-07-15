@@ -11,10 +11,10 @@ namespace UnitTests
         [TestCase( "black", "white")]
         public void ACounterCanFlipBetweenColours(string originalColour, string newColour)
         {
-            var counter = new Counter(originalColour);
-            Assert.That(originalColour, Is.EqualTo(counter.ColourDisplayed));
+            var counter = new Counter {Colour = originalColour};
+            Assert.That(originalColour, Is.EqualTo(counter.Colour));
             counter.Flip();
-            Assert.That(newColour, Is.EqualTo(counter.ColourDisplayed));
+            Assert.That(newColour, Is.EqualTo(counter.Colour));
         }
     }
 }

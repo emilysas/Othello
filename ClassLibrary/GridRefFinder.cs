@@ -5,16 +5,16 @@ using System.Text.RegularExpressions;
 
 namespace ClassLibrary
 {
-    class GridRefFinder
+    public class GridRefFinder<T> where T : IPieceType
     {
-        private Dictionary<string, Square<Counter>> _board;
+        private Dictionary<string, Square<T>> _board;
 
-        public GridRefFinder(Dictionary<string, Square<Counter>> board)
+        public GridRefFinder(Dictionary<string, Square<T>> board)
         {
             _board = board;
         }
 
-       public Square<Counter> NeighbouringSquares(Directions direction, string gridRefOfCurrentSquare)
+       public Square<T> NeighbouringSquares(Directions direction, string gridRefOfCurrentSquare)
        {
            string neighbourGridRef = FindGridRef(direction, gridRefOfCurrentSquare);
 

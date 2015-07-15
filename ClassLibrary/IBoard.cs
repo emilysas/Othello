@@ -1,7 +1,7 @@
 ﻿namespace ClassLibrary
 {
-    public interface IBoard
+    public interface IBoard<T>
     {
-        void MakeBoard();
+        void PlacePiece(string gridRef, T pieceType);
     }
 }

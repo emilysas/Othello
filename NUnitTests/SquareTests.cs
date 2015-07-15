@@ -12,11 +12,12 @@ namespace UnitTests
         [TestCase("empty", "empty")]
         public void ASquareKnowsItsContents(string newContents, string originalContents)
         {
-            var square = new Square<Counter>("A1");
-            var counter = new Counter(originalContents);
+            var square = new Square<Counter>();
+            var counter = new Counter();
+            counter.Colour = originalContents;
             square.PlacePiece(counter);
             counter.Flip();
-            Assert.That(square.Contents().ColourDisplayed, Is.EqualTo(newContents));
+            Assert.That(square.Contents().Colour, Is.EqualTo(newContents));
         }
 
     }

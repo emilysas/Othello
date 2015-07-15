@@ -1,11 +1,11 @@
 ﻿
 namespace ClassLibrary
 {
-    public class Player : INamedThing
+    public class Player<T> : INamedThing
     {
-        private IBoard _board;
+        private IBoard<T> _board;
 
-        public Player(string name, IBoard board)
+        public Player(string name, IBoard<T> board)
         {
             Name = name;
             _board = board;
@@ -15,7 +15,7 @@ namespace ClassLibrary
 
         public string PlayingColour { get; set; }
 
-        public void PlaceCounter(string cell)
+        public void Play(string cell)
         {
 
         }

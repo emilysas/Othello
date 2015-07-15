@@ -7,14 +7,14 @@ namespace UnitTests
     [TestFixture]
     public class PlayerTest
     {
-        private Mock<IBoard> mockBoard;
-        private Player player;
+        private Mock<IBoard<Counter>> mockBoard;
+        private Player<Counter> player;
 
         [SetUp]
         public void Init()
         {
-            mockBoard = new Mock<IBoard>();
-            player = new Player("Emily", mockBoard.Object) {PlayingColour = "black"};
+            mockBoard = new Mock<IBoard<Counter>>();
+            player = new Player<Counter>("Emily", mockBoard.Object) {PlayingColour = "black"};
         }
 
         [Test]

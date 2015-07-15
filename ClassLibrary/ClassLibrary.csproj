@@ -41,11 +41,14 @@
   <ItemGroup>
     <Compile Include="Board.cs" />
     <Compile Include="Directions.cs" />
+    <Compile Include="GridRefFinder.cs" />
+    <Compile Include="ISquare.cs" />
+    <Compile Include="OthelloBoard.cs" />
+    <Compile Include="PieceType.cs" />
     <Compile Include="Square.cs" />
     <Compile Include="IBoard.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Counter.cs" />
-    <Compile Include="ICounter.cs" />
     <Compile Include="IPlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

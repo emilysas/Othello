@@ -13,11 +13,11 @@ namespace UnitTests
     {
 
         [Test]
-        public void ABoardCanFindNeighbouringSquares()
+        public void ABoardCannotRecieveAPieceIntoAnOccupiedSquare()
         {
-            var board = new Board(8, 8);
-            board.PlacePiece("A1", "black");
-            Assert.Throws<Exception>(() => board.PlacePiece("A1", "white"));
+            var board = new Board<Counter>(8, 8);
+            board.PlacePiece("A1", new Counter());
+            Assert.Throws<Exception>(() => board.PlacePiece("A1", new Counter()));
         }
 
 

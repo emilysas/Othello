@@ -1,20 +1,10 @@
 ﻿using System;
-using System.CodeDom;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
 
 namespace ClassLibrary
 {
-    public class Square<T>
+    public class Square<T> : ISquare<T> where T : IPieceType
     {
-        private string _gridRef;
         private T _contents;
-
-        public Square(string gridRef)
-        {
-            _gridRef = gridRef;
-        }
 
         public T Contents()
         {
@@ -23,15 +13,17 @@ namespace ClassLibrary
                 throw new Exception("this square is empty");
             }
                 return _contents;
-
         }
 
         public void PlacePiece(T piece)
         {
-            _contents = piece;
+           if (IsEmpty())
+                _contents = piece;
+           else
+               throw new Exception("This square is occupied");
         }
 
-        public bool IsEmpty()
+        private bool IsEmpty()
         {
             return _contents == null;
         }

@@ -1,30 +1,18 @@
 ﻿using System.Collections;
+using ClassLibrary;
 
 namespace ClassLibrary
 {
-    public class Counter : ICounter
+    public class Counter : IPieceType
     {
-        public string ColourDisplayed { get; private set; }
-
-        public Counter (string colour)
-        {
-            ColourDisplayed = colour;
-        }
+        public string Discription { get; set; }
+        public string Colour { get; set; }
 
         public void Flip()
         {
-            switch (ColourDisplayed)
-            {
-                case("white") :
-                    ColourDisplayed = "black";
-                    break;
-                case("black") :
-                    ColourDisplayed = "white";
-                    break;
-                case("empty") :
-                    ColourDisplayed = "empty";
-                    break;
-            }
+            Colour = (Colour == "black") ? "white" : "black";
         }
+
     }
+
 }
