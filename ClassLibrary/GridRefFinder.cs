@@ -5,22 +5,22 @@ using System.Text.RegularExpressions;
 
 namespace ClassLibrary
 {
-    public class GridRefFinder<T> where T : IPieceType
+    public class GridRefFinder<T> where T : IPieceType, new()
     {
-        private Dictionary<string, Square<T>> _board;
+        private Board<T> _board;
 
-        public GridRefFinder(Dictionary<string, Square<T>> board)
+        public GridRefFinder(Board<T> board)
         {
             _board = board;
         }
 
-       public Square<T> NeighbouringSquares(Directions direction, string gridRefOfCurrentSquare)
+       public T NeighbouringSquare(Directions direction, string gridRefOfCurrentSquare)
        {
            string neighbourGridRef = FindGridRef(direction, gridRefOfCurrentSquare);
 
-           if (_board.ContainsKey(neighbourGridRef))
+           if (_board.ViewBoardSquare(neighbourGridRef) != null)
            {
-               return _board[neighbourGridRef];
+               return _board.ViewBoardSquare(neighbourGridRef);
            }
            throw new Exception("This square is at the edge of the board");
        }

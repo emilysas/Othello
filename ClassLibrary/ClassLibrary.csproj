@@ -46,7 +46,7 @@
     <Compile Include="ISquare.cs" />
     <Compile Include="OthelloBoard.cs" />
     <Compile Include="IPieceType.cs" />
-    <Compile Include="RuleBook.cs" />
+    <Compile Include="OthelloRuleBook.cs" />
     <Compile Include="Square.cs" />
     <Compile Include="IBoard.cs" />
     <Compile Include="Player.cs" />

@@ -22,7 +22,7 @@ namespace ClassLibrary
         public bool Play(string gridRef)
         {
             var piece = new T {Colour = PlayingColour};
-            return _rules.CheckPlayIsLegitimate(_board, gridRef, piece);
+            return _rules.CheckPlayIsLegitimate(gridRef, piece);
         }
     }
 }

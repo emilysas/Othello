@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace UnitTests
 {
     [TestFixture]
-    public class RuleBookTests
+    public class OthelloRuleBookTests
     {
         [TestCase("D3", true)]
         [TestCase("D2", false)]
@@ -13,9 +13,9 @@ namespace UnitTests
         public void APieceCanOnlyBePlacedNextToAPieceOfTheOppositeColour(string gridRef, bool result)
         {
             var board = new OthelloBoard();
-            var rules = new RuleBook<Counter>();
+            var rules = new OthelloRuleBook(board);
             var counter = new Counter {Colour = "black"};
-            Assert.That(result, Is.EqualTo(rules.CheckPlayIsLegitimate(board, gridRef, counter)));
+            Assert.That(result, Is.EqualTo(rules.CheckPlayIsLegitimate(gridRef, counter)));
         }
     }
 }
