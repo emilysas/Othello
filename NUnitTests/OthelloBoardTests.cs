@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NUnit.Framework;
+using ClassLibrary;
 
-namespace NUnitTests
+namespace UnitTests
 {
-    class OthelloBoardTests
+    [TestFixture]
+    public class OthelloBoardTests
     {
+
     }
 }

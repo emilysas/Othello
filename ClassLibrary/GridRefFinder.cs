@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using ClassLibrary;
 
 namespace ClassLibrary
 {
@@ -21,16 +20,11 @@ namespace ClassLibrary
 
            if (_board.ContainsKey(neighbourGridRef))
            {
-               return FindSquare(neighbourGridRef);
+               return _board[neighbourGridRef];
            }
            throw new Exception("This square is at the edge of the board");
        }
 
-       public Square<Counter> FindSquare(string gridRef)
-       {
-               Square<Counter> square = _board[gridRef];
-               return square;
-       }
 
        private string FindGridRef(Directions direction, string gridRef)
        {
@@ -40,15 +34,6 @@ namespace ClassLibrary
            return newGridRef;
        }
 
-       public string CalculateLetter(int num)
-       {
-           var timesThroughAlphabet = num/26;
-           var positionInAlphabet = num%26;
-           var currentCharacter = Convert.ToChar(positionInAlphabet + 65);
-           return timesThroughAlphabet > 0 
-               ? CalculateLetter(timesThroughAlphabet - 1) + currentCharacter 
-               : currentCharacter.ToString();
-       }
 
        private int CalculateNumber(string letters)
        {
@@ -113,5 +98,5 @@ namespace ClassLibrary
        }
 
     }
-    }
+ 
 }
