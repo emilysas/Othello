@@ -2,6 +2,6 @@
 {
     public interface IBoard<T>
     {
-        void PlacePiece(string gridRef, T pieceType);
+        void SetUp(string gridRef, T pieceType);
     }
 }

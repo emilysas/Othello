@@ -19,7 +19,7 @@ namespace ClassLibrary
             MakeBoard();
         }
 
-        public virtual void PlacePiece(string gridRef, T pieceType)
+        public void SetUp(string gridRef, T pieceType)
         {
             Square<T> square = _board[gridRef];
             square.PlacePiece(pieceType);

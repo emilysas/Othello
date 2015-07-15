@@ -50,6 +50,7 @@
     <Compile Include="OthelloBoardTests.cs" />
     <Compile Include="PlayerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RuleBookTests.cs" />
     <Compile Include="SquareTests.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -14,13 +14,13 @@
             var blackPiece = new Counter() { Colour = "black"};
             var blackPiece2 = new Counter() { Colour = "black"};
 
-            PlacePiece("D4", whitePiece);
-            PlacePiece("E5", whitePiece2);
-            PlacePiece("D5", blackPiece);
-            PlacePiece("E4", blackPiece2);
+            SetUp("D4", whitePiece);
+            SetUp("E5", whitePiece2);
+            SetUp("D5", blackPiece);
+            SetUp("E4", blackPiece2);
         }
 
-        public override void PlacePiece(string gridRef, Counter pieceType)
+        public void PlacePiece(string gridRef, Counter pieceType)
         {
             Square<Counter> square = _board[gridRef];
             square.PlacePiece(pieceType);

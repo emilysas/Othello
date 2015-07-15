@@ -1,5 +1,4 @@
 ﻿using ClassLibrary;
-using Moq;
 using NUnit.Framework;
 
 namespace UnitTests
@@ -7,14 +6,16 @@ namespace UnitTests
     [TestFixture]
     public class PlayerTest
     {
-        private Mock<IBoard<Counter>> mockBoard;
+        private OthelloBoard board;
+        private RuleBook<Counter> rules;
         private Player<Counter> player;
 
         [SetUp]
         public void Init()
         {
-            mockBoard = new Mock<IBoard<Counter>>();
-            player = new Player<Counter>("Emily", mockBoard.Object) {PlayingColour = "black"};
+            rules = new RuleBook<Counter>();
+            board = new OthelloBoard();
+            player = new Player<Counter>("Emily", board, rules) {PlayingColour = "black"};
         }
 
         [Test]
@@ -26,8 +27,8 @@ namespace UnitTests
 //        [Test]
 //        public void APlayerCanPlaceACounterOnTheBoard()
 //        {
-//            player.PlaceCounter("A3");
-//            mockBoard.VerifyGet(board => board.ReceiveCounter("A3", "black"), Times.Once);
+//            player.Play("A3")
+//            Assert.That();
 //        }
 
     }
