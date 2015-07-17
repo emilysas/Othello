@@ -26,7 +26,7 @@ namespace ClassLibrary
        }
 
 
-       private string FindGridRef(Directions direction, string gridRef)
+       public string FindGridRef(Directions direction, string gridRef)
        {
            string xCoord = Regex.Matches(gridRef, @"[a-zA-Z]").ToString();
            int yCoord = Int32.Parse(Regex.Matches(gridRef, @"[0-9]").ToString());

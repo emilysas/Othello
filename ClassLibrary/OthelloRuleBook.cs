@@ -17,23 +17,33 @@ namespace ClassLibrary
 
         public bool CheckPlayIsLegitimate(string gridRef, Counter pieceToPlay)
         {
+            bool PlayIsLegitimate = false;
+
             try
             {
                 List<Directions> locationOfOpposingCounters = CheckAtLeastOneNeighbourOfOppositeColour(gridRef,
                     pieceToPlay);
                 if (locationOfOpposingCounters.Count < 0)
-                    return CheckForCounterOfSameColour(gridRef, locationOfOpposingCounters);
+                    PlayIsLegitimate = CheckForCounterOfOppositeColour(gridRef, locationOfOpposingCounters, pieceToPlay);
 
             }
             catch
             {
-                return false;
+                PlayIsLegitimate = false;
             }
+            return PlayIsLegitimate;
         }
 
-        private bool CheckForCounterOfSameColour(string gridRef, List<Directions> locations )
+        private bool CheckForCounterOfOppositeColour(string gridRef, List<Directions> locations, Counter pieceToPlay )
         {
-
+            int total = 0;
+            foreach (var direction in locations)
+            {
+                string neighbouringSquareGridRef = _gridRefFinder.FindGridRef(direction, gridRef);
+                Counter neighbouringCounter = _gridRefFinder.NeighbouringSquare(direction, neighbouringSquareGridRef);
+                total = (neighbouringCounter.Colour != pieceToPlay.Colour) ? total += 1 : total;
+            }
+            return total < 0;
         }
 
 

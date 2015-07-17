@@ -8,8 +8,8 @@ namespace UnitTests
     public class OthelloRuleBookTests
     {
         [TestCase("D3", true)]
-        [TestCase("D2", false)]
-        [TestCase("C3", false)]
+        [TestCase("A1", false)]
+        [TestCase("F3", false)]
         public void APieceCanOnlyBePlacedNextToAPieceOfTheOppositeColour(string gridRef, bool result)
         {
             var board = new OthelloBoard();
