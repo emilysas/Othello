@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using ClassLibrary;
 
 namespace ClassLibrary
@@ -20,20 +21,50 @@ namespace ClassLibrary
             bool playIsLegitimate = false;
             List<Directions> locationOfOpposingCounters = CheckAtLeastOneNeighbourOfOppositeColour(gridRef, pieceToPlay);
             if (locationOfOpposingCounters.Count > 0)
-               playIsLegitimate = CheckForCounterOfOppositeColour(gridRef, locationOfOpposingCounters, pieceToPlay);
+            {
+                Dictionary<Directions, List<IPieceType>> countersAlongLine = CheckAlongCompassPoints(gridRef,
+                    locationOfOpposingCounters, pieceToPlay);
+                playIsLegitimate = countersAlongLine.Count > 0;
+                FlipCounters(countersAlongLine);
+            }
             return playIsLegitimate;
         }
 
-        private bool CheckForCounterOfOppositeColour(string gridRef, List<Directions> locations, IPieceType pieceToPlay )
+        private void FlipCounters(Dictionary<Directions, List<IPieceType>> countersAlongLine)
         {
-            int total = 0;
-            foreach (var direction in locations)
+            foreach (List<IPieceType> countersToTurn in countersAlongLine.Values)
             {
-//                string neighbouringSquareGridRef = _gridRefFinder.FindGridRef(direction, gridRef);
-                var neighbouringCounter = _gridRefFinder.NeighbouringSquare(direction, gridRef);
-                total = (neighbouringCounter.Colour != pieceToPlay.Colour) ? ++total : total;
+                foreach(IPieceType counter in countersToTurn)
+                {
+                    ((Counter)counter).Flip();
+                }
             }
-            return total > 0;
+        }
+
+        private Dictionary<Directions, List<IPieceType>> CheckAlongCompassPoints(string gridRef, List<Directions> locations, IPieceType pieceToPlay )
+        {
+            var countersAlongLine = new Dictionary<Directions, List<IPieceType>>();
+            
+            foreach (Directions direction in locations)
+            {
+                var listOfStuffToTurnOver = new List<IPieceType>();
+                do
+                {
+                    var neighbouringCounter = _gridRefFinder.NeighbouringSquare(direction, gridRef);
+                    if (neighbouringCounter == null)
+                        break;
+                    if (neighbouringCounter.Colour != pieceToPlay.Colour)
+                        listOfStuffToTurnOver.Add(neighbouringCounter);
+                    else
+                    {
+                        countersAlongLine.Add(direction, listOfStuffToTurnOver);
+                        break;
+                    }
+
+                    gridRef = _gridRefFinder.FindGridRef(direction, gridRef);
+                } while (true);
+            }
+            return countersAlongLine;
         }
 
 
