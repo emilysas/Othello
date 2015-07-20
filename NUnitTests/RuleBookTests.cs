@@ -15,7 +15,7 @@ namespace UnitTests
             var board = new OthelloBoard();
             var rules = new OthelloRuleBook(board);
             var counter = new Counter {Colour = "black"};
-            Assert.That(result, Is.EqualTo(rules.CheckPlayIsLegitimate(gridRef, counter)));
+            Assert.That(rules.CheckPlayIsLegitimate(gridRef, counter), Is.EqualTo(result));
         }
     }
 }

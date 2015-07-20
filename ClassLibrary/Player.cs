@@ -5,10 +5,10 @@ namespace ClassLibrary
 {
     public class Player<T> : INamedThing where T: IPieceType, new()
     {
-        private IBoard<T> _board;
-        private readonly IRuleBook<T> _rules;
+        private IBoard _board;
+        private readonly IRuleBook _rules;
 
-        public Player(string name, IBoard<T> board, IRuleBook<T> rules )
+        public Player(string name, IBoard board, IRuleBook rules )
         {
             Name = name;
             _board = board;

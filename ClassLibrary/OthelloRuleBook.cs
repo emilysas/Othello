@@ -4,68 +4,53 @@ using ClassLibrary;
 
 namespace ClassLibrary
 {
-    public class OthelloRuleBook : IRuleBook<Counter>
+    public class OthelloRuleBook : IRuleBook
     {
         private OthelloBoard _board;
-        private GridRefFinder<Counter> _gridRefFinder; 
+        private GridRefFinder _gridRefFinder; 
 
         public OthelloRuleBook(OthelloBoard board)
         {
             _board = board;
-            _gridRefFinder = new GridRefFinder<Counter>(_board);
+            _gridRefFinder = new GridRefFinder(_board);
         } 
 
-        public bool CheckPlayIsLegitimate(string gridRef, Counter pieceToPlay)
+        public bool CheckPlayIsLegitimate(string gridRef, IPieceType pieceToPlay)
         {
-            bool PlayIsLegitimate = false;
-
-            try
-            {
-                List<Directions> locationOfOpposingCounters = CheckAtLeastOneNeighbourOfOppositeColour(gridRef,
-                    pieceToPlay);
-                if (locationOfOpposingCounters.Count < 0)
-                    PlayIsLegitimate = CheckForCounterOfOppositeColour(gridRef, locationOfOpposingCounters, pieceToPlay);
-
-            }
-            catch
-            {
-                PlayIsLegitimate = false;
-            }
-            return PlayIsLegitimate;
+            bool playIsLegitimate = false;
+            List<Directions> locationOfOpposingCounters = CheckAtLeastOneNeighbourOfOppositeColour(gridRef, pieceToPlay);
+            if (locationOfOpposingCounters.Count > 0)
+               playIsLegitimate = CheckForCounterOfOppositeColour(gridRef, locationOfOpposingCounters, pieceToPlay);
+            return playIsLegitimate;
         }
 
-        private bool CheckForCounterOfOppositeColour(string gridRef, List<Directions> locations, Counter pieceToPlay )
+        private bool CheckForCounterOfOppositeColour(string gridRef, List<Directions> locations, IPieceType pieceToPlay )
         {
             int total = 0;
             foreach (var direction in locations)
             {
-                string neighbouringSquareGridRef = _gridRefFinder.FindGridRef(direction, gridRef);
-                Counter neighbouringCounter = _gridRefFinder.NeighbouringSquare(direction, neighbouringSquareGridRef);
-                total = (neighbouringCounter.Colour != pieceToPlay.Colour) ? total += 1 : total;
+//                string neighbouringSquareGridRef = _gridRefFinder.FindGridRef(direction, gridRef);
+                var neighbouringCounter = _gridRefFinder.NeighbouringSquare(direction, gridRef);
+                total = (neighbouringCounter.Colour != pieceToPlay.Colour) ? ++total : total;
             }
-            return total < 0;
+            return total > 0;
         }
 
 
-        private List<Directions> CheckAtLeastOneNeighbourOfOppositeColour(string gridRef, Counter pieceToPlay)
+        private List<Directions> CheckAtLeastOneNeighbourOfOppositeColour(string gridRef, IPieceType pieceToPlay)
         {
-            List<Directions> locationOfOpposingCounters = new List<Directions>();
+            var locationOfOpposingCounters = new List<Directions>();
             var compasspoints = Enum.GetValues(typeof(Directions));
 
             foreach (Directions direction in compasspoints)
             {
-                try
-                {
-                    Counter neighbouringCounter = _gridRefFinder.NeighbouringSquare(direction, gridRef);
-                    if (neighbouringCounter.Colour != pieceToPlay.Colour)
+
+                    var neighbouringCounter = _gridRefFinder.NeighbouringSquare(direction, gridRef);
+                    if (neighbouringCounter != null && neighbouringCounter.Colour != pieceToPlay.Colour)
                     {
                         locationOfOpposingCounters.Add(direction);
                     }
-                }
-                catch(Exception)
-                {
-                    break;
-                }
+
                 
             }
             return locationOfOpposingCounters;

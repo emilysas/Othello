@@ -5,16 +5,16 @@ using System.Text.RegularExpressions;
 
 namespace ClassLibrary
 {
-    public class GridRefFinder<T> where T : IPieceType, new()
+    public class GridRefFinder
     {
-        private Board<T> _board;
+        private Board _board;
 
-        public GridRefFinder(Board<T> board)
+        public GridRefFinder(Board board)
         {
             _board = board;
         }
 
-       public T NeighbouringSquare(Directions direction, string gridRefOfCurrentSquare)
+       public IPieceType NeighbouringSquare(Directions direction, string gridRefOfCurrentSquare)
        {
            string neighbourGridRef = FindGridRef(direction, gridRefOfCurrentSquare);
 
@@ -22,14 +22,18 @@ namespace ClassLibrary
            {
                return _board.ViewBoardSquare(neighbourGridRef);
            }
-           throw new Exception("This square is at the edge of the board");
+           return null;
        }
 
 
        public string FindGridRef(Directions direction, string gridRef)
        {
-           string xCoord = Regex.Matches(gridRef, @"[a-zA-Z]").ToString();
-           int yCoord = Int32.Parse(Regex.Matches(gridRef, @"[0-9]").ToString());
+           var letters = new Regex(@"[a-zA-Z]");
+           var numbers =  new Regex(@"[0-9]");
+           string xCoord = letters.Match(gridRef).ToString();
+           int yCoord;
+           string digits = numbers.Match(gridRef).ToString();
+           Int32.TryParse(digits, out yCoord);
            string newGridRef = SearchCompassPoints(direction, xCoord, yCoord);
            return newGridRef;
        }
@@ -87,13 +91,13 @@ namespace ClassLibrary
 
        private string East(string xCoord)
        {
-           int ord = CalculateNumber(xCoord);
+           int ord = CalculateNumber(xCoord)+64;
            return Convert.ToChar(ord + 1).ToString();
        }
 
        private string West(string xCoord)
        {
-           int ord = CalculateNumber(xCoord);
+           int ord = CalculateNumber(xCoord)+64;
            return Convert.ToChar(ord - 1).ToString();
        }
 

@@ -1,6 +1,8 @@
-﻿namespace ClassLibrary
+﻿using System.Security.Authentication;
+
+namespace ClassLibrary
 {
-    public class OthelloBoard : Board<Counter>
+    public class OthelloBoard : Board
     {
         public OthelloBoard() : base(8,8)
         {
@@ -22,13 +24,15 @@
 
         public void PlacePiece(string gridRef, Counter pieceType)
         {
-            Square<Counter> square = _board[gridRef];
+            Square square = _board[gridRef];
             square.PlacePiece(pieceType);
         }
 
         private void FlipCounter(string gridRef)
         {
-            ViewBoardSquare(gridRef).Flip();
+            var contents = ViewBoardSquare(gridRef);
+            if (contents != null)
+                ((Counter)contents).Flip();
         }
 
 

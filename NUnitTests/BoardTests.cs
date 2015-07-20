@@ -12,7 +12,7 @@ namespace UnitTests
         [Test]
         public void ABoardCannotRecieveAPieceIntoAnOccupiedSquare()
         {
-            var board = new Board<Counter>(8, 8);
+            var board = new Board(8, 8);
             board.SetUp("A1", new Counter());
             Assert.Throws<Exception>(() => board.SetUp("A1", new Counter()));
         }

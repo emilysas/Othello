@@ -1,8 +1,8 @@
 ﻿namespace ClassLibrary
 {
-    public interface ISquare<T>
+    public interface ISquare
     {
-        T Contents();
-        void PlacePiece(T piece);
+        IPieceType Contents();
+        void PlacePiece(IPieceType piece);
     }
 }

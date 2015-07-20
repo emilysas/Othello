@@ -2,20 +2,16 @@
 
 namespace ClassLibrary
 {
-    public class Square<T> : ISquare<T> where T : IPieceType
+    public class Square : ISquare
     {
-        private T _contents;
+        private IPieceType _contents;
 
-        public T Contents()
+        public IPieceType Contents()
         {
-            if (IsEmpty())
-            {
-                throw new Exception("this square is empty");
-            }
-                return _contents;
+            return _contents;
         }
 
-        public void PlacePiece(T piece)
+        public void PlacePiece(IPieceType piece)
         {
            if (IsEmpty())
                 _contents = piece;

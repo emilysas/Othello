@@ -5,9 +5,9 @@ using System.Collections.Generic;
 namespace ClassLibrary
 {
 
-    public class Board<T> : IBoard<T> where T : IPieceType, new()
+    public class Board : IBoard
     {
-        protected readonly Dictionary<string, Square<T>> _board;
+        protected readonly Dictionary<string, Square> _board;
         private readonly int _boardWidth;
         private readonly int _boardLength;
 
@@ -15,19 +15,23 @@ namespace ClassLibrary
         {
             _boardWidth = width;
             _boardLength = length;
-            _board = new Dictionary<string, Square<T>>();
+            _board = new Dictionary<string, Square>();
             MakeBoard();
         }
 
-        public void SetUp(string gridRef, T pieceType)
+        public void SetUp(string gridRef, IPieceType pieceType)
         {
-            Square<T> square = _board[gridRef];
+            Square square = _board[gridRef];
             square.PlacePiece(pieceType);
         }
 
-        public T ViewBoardSquare(string gridRef)
+        public IPieceType ViewBoardSquare(string gridRef)
         {
-            return _board[gridRef].Contents();
+            Square square;
+            IPieceType contents = null;
+            if (_board.TryGetValue(gridRef, out square))
+               contents = square.Contents();
+            return contents;
         }
 
         private void MakeBoard()
@@ -39,7 +43,7 @@ namespace ClassLibrary
                     string letters = CalculateLetter(i);
                     string number = j.ToString();
                     string boardKey = letters + number;
-                    _board.Add(boardKey, new Square<T>());
+                    _board.Add(boardKey, new Square());
                 }
             }
         }

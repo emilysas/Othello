@@ -12,7 +12,7 @@ namespace UnitTests
         [TestCase("empty", "empty")]
         public void ASquareKnowsItsContents(string newContents, string originalContents)
         {
-            var square = new Square<Counter>();
+            var square = new Square();
             var counter = new Counter();
             counter.Colour = originalContents;
             square.PlacePiece(counter);

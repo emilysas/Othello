@@ -5,8 +5,8 @@ using System.Text;
 
 namespace ClassLibrary
 {
-    public interface IRuleBook<T>
+    public interface IRuleBook
     {
-        bool CheckPlayIsLegitimate(string gridRef, T piece);
+        bool CheckPlayIsLegitimate(string gridRef, IPieceType piece);
     }
 }
