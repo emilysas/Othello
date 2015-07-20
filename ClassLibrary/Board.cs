@@ -25,6 +25,11 @@ namespace ClassLibrary
             square.PlacePiece(pieceType);
         }
 
+        public virtual void MakePlay(string gridRef, IPieceType pieceToPlay)
+        {
+           
+        }
+
         public IPieceType ViewBoardSquare(string gridRef)
         {
             Square square;

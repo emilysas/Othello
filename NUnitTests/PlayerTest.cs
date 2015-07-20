@@ -7,15 +7,13 @@ namespace UnitTests
     public class PlayerTest
     {
         private OthelloBoard board;
-        private OthelloRuleBook rules;
         private Player<Counter> player;
 
         [SetUp]
         public void Init()
         {
             board = new OthelloBoard();
-            rules = new OthelloRuleBook(board);
-            player = new Player<Counter>("Emily", board, rules) {PlayingColour = "black"};
+            player = new Player<Counter>("Emily", board) {PlayingColour = "black"};
         }
 
         [Test]

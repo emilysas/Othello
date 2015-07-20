@@ -7,6 +7,6 @@ namespace ClassLibrary
 {
     public interface IRuleBook
     {
-        bool CheckPlayIsLegitimate(string gridRef, IPieceType piece);
+        bool MakePlay(string gridRef, IPieceType piece);
     }
 }
