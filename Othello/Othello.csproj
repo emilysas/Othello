@@ -172,10 +172,13 @@
     <Content Include="Assets\CSS\NewGame.css" />
     <Content Include="Assets\Images\aleksandr-orlov.jpg" />
     <Content Include="Assets\Images\bug.png" />
+    <Content Include="Assets\Images\games.jpg" />
     <Content Include="Assets\Images\sergei.png" />
+    <Content Include="Assets\Images\speech-bubble-right.png" />
     <Content Include="Assets\Images\speech-bubble.png" />
     <Content Include="Assets\Images\thought-bubble.jpg" />
     <Content Include="Assets\Images\thought-bubble.png" />
+    <Content Include="Assets\Images\whitebug.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
