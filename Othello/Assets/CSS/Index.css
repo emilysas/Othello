@@ -14,6 +14,7 @@
     height: 100%;
     width: 35%;
     float: left;
+
 }
 
 #speech {
@@ -30,30 +31,32 @@ h2 {
 
 #sergei {
     margin-top: 10%;
+
 }
 #sergei-img {
-    margin-top: 32.5%;
+    margin-top: 37.5%;
     margin-bottom: 0;
     float: right;
     height: 375px;
 }
 #thoughts {
     background: url("../Images/thought-bubble.png") no-repeat center;
-    background-size: 225px;
+    background-size: 290px;
     float: right;
-    height: 300px;
-    width: 30%;
-    margin-top: 20%;
+    height: 400px;
+    width: 32%;
+    margin-top: 10%;
     margin-left: 35%;
+
 }
 #sergei_spacer {
     float: left;
 }
 
 #rules {
-    top: 20.5%;
+    top: 15%;
     position: relative;
-    margin-left: 6%;
+    margin-left: 10%;
     margin-right: 4%;
     text-align: center;
 }
