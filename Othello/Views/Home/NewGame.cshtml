@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "New Game";
+}
+
+<p>Who wants play most excite game?</p>
+
+<section>
+    <img src="../../Assets/Images/sergei.png"/>
+</section>
+
+<form method="post" action="Game/Play.cshtml">
+    <p>Player 1, who like very much the black beetles:</p>
+    <input type="text" name="player1Name"/>
+    <img src ="../../Assets/Images/bug.png"/>
+    <p>Player 2, who munch white beetles:</p>
+    <input type="text" name="player2name"/>
+    <img src="../../Assets/Images/bug.png"/>
+    <br/>
+    <input type="submit" value="Beginning"/>
+</form>
+
+<a href="http://www.britishothello.org.uk/rules.html">How To Play</a>

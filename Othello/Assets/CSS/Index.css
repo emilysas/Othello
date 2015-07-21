@@ -1,0 +1,72 @@
+﻿#intro {
+    background: url("../Images/aleksandr-orlov.jpg") no-repeat;
+    background-size: 100%;
+    height:800px;
+}
+#spacer {
+    width: 65%;
+    height: 100%;
+    float: right;
+}
+#speech_bubble {
+    background: url("../Images/speech-bubble.png") no-repeat right;
+    background-size: 600px;
+    height: 100%;
+    width: 35%;
+    float: left;
+}
+
+#speech {
+    width: 80%;
+    height: 25%;
+    position: relative;
+    top: 45%;
+    float: none;
+    text-align: center;
+}
+h2 {
+    color: black;
+}
+
+#sergei {
+    margin-top: 10%;
+}
+#sergei-img {
+    margin-top: 32.5%;
+    margin-bottom: 0;
+    float: right;
+    height: 375px;
+}
+#thoughts {
+    background: url("../Images/thought-bubble.png") no-repeat center;
+    background-size: 225px;
+    float: right;
+    height: 300px;
+    width: 30%;
+    margin-top: 20%;
+    margin-left: 35%;
+}
+#sergei_spacer {
+    float: left;
+}
+
+#rules {
+    top: 20.5%;
+    position: relative;
+    margin-left: 6%;
+    margin-right: 4%;
+    text-align: center;
+}
+
+button {
+    margin-top: 10%;
+    margin-left: 10%;
+    padding: 2.5%;
+    border-radius: 5%;
+}
+
+h2, p {
+    font-family: Georgia, Times, "Times New Roman", serif;
+}
+
+
