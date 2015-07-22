@@ -11,6 +11,7 @@ namespace Othello.Controllers
         // GET: Game
         public ActionResult Play()
         {
+            
             return View();
         }
     }
