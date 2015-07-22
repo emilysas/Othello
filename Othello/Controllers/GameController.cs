@@ -10,7 +10,7 @@ namespace Othello.Controllers
     public class GameController : Controller
     {
         [HttpPost]
-        public ActionResult StartGame(string player1Name, string player2Name)
+        public ActionResult StartGame(string player1Name = "Player 1", string player2Name = "Player 2")
         {
             ViewBag.player1Name = player1Name;
             ViewBag.player2Name = player2Name;

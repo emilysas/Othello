@@ -7,6 +7,6 @@ namespace Othello.Models
 {
     public class BoardModel
     {
-
+        public TYPE NAME { get; set; }
     }
 }
