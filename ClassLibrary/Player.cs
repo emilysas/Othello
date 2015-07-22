@@ -7,15 +7,16 @@ namespace ClassLibrary
     {
         private IBoard _board;
 
-        public Player(string name, IBoard board)
+        public Player(string name, IBoard board, string colour)
         {
             Name = name;
             _board = board;
+            PlayingColour = colour;
         }
 
         public string Name { get; set; }
 
-        public string PlayingColour { get; set; }
+        private string PlayingColour { get; set; }
 
         public void Play(string gridRef)
         {
