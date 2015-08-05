@@ -1,6 +1,6 @@
 ﻿@Styles.Render("~/Assets/CSS/Game.css")
 @Scripts.Render("~/Assets/JS/GamePlay.js")
-@model dynamic
+@model Othello.Models.BoardModel
 
 @{
     ViewBag.Title = "title";
@@ -8,7 +8,7 @@
 
 <section class="player" id="player1">
     <img id="blackbug"src="../../Assets/Images/bug.png"/>
-    <h2>@ViewBag.player1Name</h2>
+    <h2>@Model.player1Name</h2>
     <h1 id="player1Count">2</h1>
     <img id="meerkat1" src="../../Assets/Images/maiya.png" />
 </section>
@@ -85,11 +85,15 @@
 </section>
 
 <section class="player" id="player2">
-    <img id="whitebug"src="../../Assets/Images/whitebug.png" />
-    <h2>@ViewBag.player2Name</h2>
+    <img id="whitebug"src="../../Assets/Images/whitebug.png"/>
+    <h2>@Model.player2Name</h2>
     <h1 id="player2Count">2</h1>
-    <img id ="meerkat2" src="../../Assets/Images/oleg.png" />
+    <img id="meerkat2" src="../../Assets/Images/oleg.png"/>
 </section>
+
+@Scripts.Render("~/Scripts/jquery-1.10.2.js");
+@Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js");
+@Scripts.Render("~/Assets/JS/GamePlay.js");
 
 
 

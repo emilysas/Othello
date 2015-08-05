@@ -13,14 +13,14 @@ namespace UnitTests
         public void Init()
         {
             board = new OthelloBoard();
-            player = new Player<Counter>("Emily", board) {PlayingColour = "black"};
+            player = new Player<Counter>("Emily", board, "black");
         }
 
-        [Test]
-        public void APlayerCanChooseWhichColourCountersToPlay()
-        {
-            Assert.That("black", Is.EqualTo(player.PlayingColour));
-        }
+//        [Test]
+//        public void APlayerCanChooseWhichColourCountersToPlay()
+//        {
+//            Assert.That("black", Is.EqualTo(player.PlayingColour));
+//        }
 
 //        [Test]
 //        public void APlayerCanPlaceACounterOnTheBoard()

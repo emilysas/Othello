@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using Othello.Models;
 
 namespace Othello.Controllers
 {
@@ -11,7 +12,8 @@ namespace Othello.Controllers
 
         public ActionResult NewGame()
         {
-            return View();
+            var boardModel = new BoardModel();
+            return View(boardModel);
         }
 
     }

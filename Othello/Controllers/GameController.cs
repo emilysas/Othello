@@ -4,25 +4,23 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ClassLibrary;
+using Othello.Models;
 
 namespace Othello.Controllers
 {
     public class GameController : Controller
     {
-        [HttpPost]
-        public ActionResult StartGame(string player1Name = "Player 1", string player2Name = "Player 2")
+        public ActionResult StartGame(BoardModel boardModel)
         {
-            ViewBag.player1Name = player1Name;
-            ViewBag.player2Name = player2Name;
             var board = new OthelloBoard();
-            var player1 = new Player<Counter>(player1Name, board, "black");
-            var player2 = new Player<Counter>(player2Name, board, "white");
-            return View();
+            var player1 = new Player<Counter>(boardModel.player1Name, board, "black");
+            var player2 = new Player<Counter>(boardModel.player2Name, board, "white");
+            return View(boardModel);
         }
-        [HttpPost]
-        public JsonResult Play(Player<Counter> player, string gridRef)
-        {
-             Json()
-        }
+//        [HttpPost]
+//        public JsonResult Play(Player<Counter> player, string gridRef)
+//        {
+//            Json();
+//        }
     }
 }

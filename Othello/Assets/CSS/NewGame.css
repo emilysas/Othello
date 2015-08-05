@@ -37,12 +37,12 @@
     background-color: #004a8e ;
 }
 
-form {
-    margin-left: 10%;
-    margin-top: 15%;
+#player1, #player2, #submit {
+    margin-top: 10%;
+    text-align: center;
 }
 
-form img {
+img {
     height: 100px;
 }
 
@@ -51,9 +51,11 @@ form img {
     margin-bottom: 10%;
 }
 
-button {
+a {
     margin-top: 15%;
-    margin-left: 35%;
+    font-size: 1.75em;
+    font-family: Georgia, Times, "Times New Roman", serif;
+    color: #309f27;
 }
 
 #form h2 {
