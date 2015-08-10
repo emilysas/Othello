@@ -7,15 +7,15 @@ namespace ClassLibrary
     public class OthelloBoard : Board
     {
         private OthelloRuleBook _rules;
-        public int _blackCounters;
-        public int _whiteCounters;
+        public int BlackCounters { get; set; }
+        public int WhiteCounters { get; set; }
 
         public OthelloBoard() : base(8, 8)
         {
             PlaceInitialPieces();
             _rules = new OthelloRuleBook(this);
-            _blackCounters = 2;
-            _whiteCounters = 2;
+            BlackCounters = 2;
+            WhiteCounters = 2;
         }
 
         private void PlaceInitialPieces()
@@ -48,7 +48,7 @@ namespace ClassLibrary
                 if (countersAlongLine.Count > 0)
                 {
                     PlacePiece(gridRef, (Counter)pieceToPlay);
-                    IncrememtScore(pieceToPlay.Colour);
+                    IncrememtOwnScore(pieceToPlay.Colour);
                     FlipCounters(countersAlongLine);
                 }
             }
@@ -61,20 +61,33 @@ namespace ClassLibrary
                 foreach (IPieceType counter in countersToTurn)
                 {
                     ((Counter) counter).Flip();
-                    IncrememtScore(counter.Colour);
+                    IncrememtOwnScore(counter.Colour);
+                    DecreaseOpponentsScore(counter.Colour);
                 }
             }
         }
 
-        private void IncrememtScore(string counterColour)
+        private void IncrememtOwnScore(string counterColour)
         {
             if (counterColour == "black")
             {
-                _blackCounters += 1;
+                BlackCounters += 1;
             }
             else
             {
-                _whiteCounters += 1;
+                WhiteCounters += 1;
+            }
+        }
+
+        private void DecreaseOpponentsScore(string counterColour)
+        {
+            if (counterColour == "black")
+            {
+                WhiteCounters -= 1;
+            }
+            else
+            {
+                BlackCounters -= 1;
             }
         }
     }

@@ -33,12 +33,12 @@ namespace UnitTests
             Assert.That(board.ViewBoardSquare("D3"), Is.EqualTo(counter1));
             board.MakePlay("D2", counter2);
             Assert.That(board.ViewBoardSquare("D2"), Is.Not.EqualTo(counter2));
-//            board.MakePlay("C3", counter2);
-//            Assert.That(board.ViewBoardSquare("C3"), Is.EqualTo(counter2));
-//            board.MakePlay("C4", counter3);
-//            Assert.That(board.ViewBoardSquare("C4"), Is.EqualTo(counter3));
-//            board.MakePlay("E3", counter4);
-//            Assert.That(board.ViewBoardSquare("E3"), Is.EqualTo(counter4));
+            board.MakePlay("C3", counter2);
+            Assert.That(board.ViewBoardSquare("C3"), Is.EqualTo(counter2));
+            board.MakePlay("C4", counter3);
+            Assert.That(board.ViewBoardSquare("C4"), Is.EqualTo(counter3));
+            board.MakePlay("E3", counter4);
+            Assert.That(board.ViewBoardSquare("E3"), Is.EqualTo(counter4));
         }
     }
 }

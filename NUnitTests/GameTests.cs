@@ -22,13 +22,13 @@ namespace NUnitTests
             game = new Game(board, player1, player2);
         }
 
-        [Test]
-        public void PlayersTakeTurnsToPlay()
-        {
-            Assert.That(game.PlayerToPlayNext(), Is.EqualTo(player1));
-            game.Play("C4");
-            Assert.That(game.PlayerToPlayNext(), Is.EqualTo(player2));
-        }
+//        [Test]
+//        public void PlayersTakeTurnsToPlay()
+//        {
+//            Assert.That(game.PlayerToPlayNext(), Is.EqualTo(player1));
+//            game.Play("C4");
+//            Assert.That(game.PlayerToPlayNext(), Is.EqualTo(player2));
+//        }
 
         [Test]
         public void IfAPlayerPassesThenTheySkipTheirTurn()
@@ -47,14 +47,26 @@ namespace NUnitTests
             Assert.That(game.IsFinished(), Is.EqualTo(true));
         }
 
-        // Need to find a way to test this without having to make _moveCount public
         [Test]
         public void TheGameWillEndWhenTheBoardIsFull()
         {
-            game._moveCount = 63;
+            game.Player1Score = 31;
+            game.Player2Score = 32;
             Assert.That(game.IsFinished(), Is.EqualTo(false));
-            game.Play("C4");
+            game.Player1Score = 32;
+            game.Player2Score = 32;
             Assert.That(game.IsFinished(), Is.EqualTo(true));
+        }
+
+        [Test]
+        public void TheGameWillKeepScore()
+        {
+            game.Play("C4");
+            Assert.That(game.Player1Score, Is.EqualTo(4));
+            Assert.That(game.Player2Score, Is.EqualTo(1));
+            game.Play("E3");
+            Assert.That(game.Player1Score, Is.EqualTo(3));
+            Assert.That(game.Player2Score, Is.EqualTo(3));
         }
 
         [TestCase(20, 44, "Berry")]
@@ -62,8 +74,8 @@ namespace NUnitTests
         [TestCase(32, 32, "Draw")]
         public void ThePlayerWithTheMostCountersAtTheEndWillWin(int player1Score, int player2Score, string result)
         {
-            game._player1Score = player1Score;
-            game._player2Score = player2Score;
+            game.Player1Score = player1Score;
+            game.Player2Score = player2Score;
             Assert.That(game.Winner(), Is.EqualTo(result));
         }
     }

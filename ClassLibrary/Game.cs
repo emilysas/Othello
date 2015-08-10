@@ -6,11 +6,9 @@
         private readonly Player<Counter> _player2;
         private OthelloBoard _board;
         private Player<Counter> _playerWhosTurnItIs;
-        private bool _isFinished;
         private int _passCount;
-        public int _moveCount;
-        public int _player1Score;
-        public int _player2Score;
+        public int Player1Score { get; set; }
+        public int Player2Score { get; set; }
 
         public Game(OthelloBoard board, Player<Counter> player1, Player<Counter> player2)
         {
@@ -19,9 +17,8 @@
             _board = board; 
             _playerWhosTurnItIs = _player1;
             _passCount = 0;
-            _moveCount = 0;
-            _player1Score = _board._blackCounters;
-            _player2Score = _board._whiteCounters;
+            Player1Score = 2;
+            Player2Score = 2;
         }
 
         public Player<Counter> PlayerToPlayNext()
@@ -31,14 +28,15 @@
 
         public bool IsFinished()
         {
-            return _passCount == 2 || _moveCount == 64;
+            return _passCount == 2 || Player1Score + Player2Score == 64;
         }
 
         public void Play(string gridRef)
         {
             _playerWhosTurnItIs.Play(gridRef);
-            _moveCount += 1;
             _passCount = 0;
+            Player1Score = _board.BlackCounters;
+            Player2Score = _board.WhiteCounters;
             NextPlayersTurn();
         }
 
@@ -50,9 +48,9 @@
 
         public string Winner()
         {
-            return _player1Score == _player2Score
+            return Player1Score == Player2Score
                 ? "Draw"
-                : _player1Score > _player2Score
+                : Player1Score > Player2Score
                     ? _player1.Name
                     : _player2.Name;
         } 

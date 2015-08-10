@@ -16,15 +16,14 @@ namespace ClassLibrary
             _gridRefFinder = new GridRefFinder(_board);
         } 
 
-
-
-        public Dictionary<Directions, List<IPieceType>> CheckAlongCompassPoints(string gridRef, List<Directions> locations, IPieceType pieceToPlay )
+        public Dictionary<Directions, List<IPieceType>> CheckAlongCompassPoints(string originalGridRef, List<Directions> locations, IPieceType pieceToPlay )
         {
             var countersAlongLine = new Dictionary<Directions, List<IPieceType>>();
             
             foreach (Directions direction in locations)
             {
                 var listOfStuffToTurnOver = new List<IPieceType>();
+                var gridRef = originalGridRef;
                 do
                 {
                     var neighbouringCounter = _gridRefFinder.NeighbouringSquare(direction, gridRef);

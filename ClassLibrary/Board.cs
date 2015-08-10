@@ -27,7 +27,7 @@ namespace ClassLibrary
 
         public virtual void MakePlay(string gridRef, IPieceType pieceToPlay)
         {
-           
+            
         }
 
         public IPieceType ViewBoardSquare(string gridRef)
