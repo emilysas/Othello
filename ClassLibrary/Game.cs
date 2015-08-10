@@ -7,6 +7,7 @@
         private Player<Counter> _playerWhosTurnItIs;
         private bool _isFinished;
         private int _passCount;
+        public int _moveCount;
 
         public Game(Player<Counter> player1, Player<Counter> player2)
         {
@@ -14,6 +15,7 @@
             _player2 = player2;            
             _playerWhosTurnItIs = _player1;
             _passCount = 0;
+            _moveCount = 0;
         }
 
         public Player<Counter> PlayerToPlayNext()
@@ -23,12 +25,13 @@
 
         public bool IsFinished()
         {
-            return _passCount > 1;
+            return _passCount == 2 || _moveCount == 64;
         }
 
         public void Play(string gridRef)
         {
             _playerWhosTurnItIs.Play(gridRef);
+            _moveCount += 1;
             _passCount = 0;
             NextPlayersTurn();
         }

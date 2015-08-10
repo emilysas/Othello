@@ -46,12 +46,15 @@ namespace NUnitTests
             game.Pass();
             Assert.That(game.IsFinished(), Is.EqualTo(true));
         }
-//
-//        [Test]
-//        public void TheGameWillEndWhenTheBoardIsFull()
-//        {
-//
-//        }
+
+        [Test]
+        public void TheGameWillEndWhenTheBoardIsFull()
+        {
+            game._moveCount = 63;
+            Assert.That(game.IsFinished(), Is.EqualTo(false));
+            game.Play("C4");
+            Assert.That(game.IsFinished(), Is.EqualTo(true));
+        }
 //
 //        [Test]
 //        public void ThePlayerWithTheMostCountersAtTheEndWillWin()
