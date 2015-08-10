@@ -19,7 +19,7 @@ namespace NUnitTests
             board = new OthelloBoard();
             player1 = new Player<Counter>("Emily", board, "black");
             player2 = new Player<Counter>("Berry", board, "white");
-            game = new Game(player1, player2);
+            game = new Game(board, player1, player2);
         }
 
         [Test]

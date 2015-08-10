@@ -7,11 +7,15 @@ namespace ClassLibrary
     public class OthelloBoard : Board
     {
         private OthelloRuleBook _rules;
+        public int _blackCounters;
+        public int _whiteCounters;
 
         public OthelloBoard() : base(8, 8)
         {
             PlaceInitialPieces();
             _rules = new OthelloRuleBook(this);
+            _blackCounters = 2;
+            _whiteCounters = 2;
         }
 
         private void PlaceInitialPieces()
@@ -44,6 +48,7 @@ namespace ClassLibrary
                 if (countersAlongLine.Count > 0)
                 {
                     PlacePiece(gridRef, (Counter)pieceToPlay);
+                    IncrememtScore(pieceToPlay.Colour);
                     FlipCounters(countersAlongLine);
                 }
             }
@@ -56,9 +61,21 @@ namespace ClassLibrary
                 foreach (IPieceType counter in countersToTurn)
                 {
                     ((Counter) counter).Flip();
+                    IncrememtScore(counter.Colour);
                 }
             }
         }
 
+        private void IncrememtScore(string counterColour)
+        {
+            if (counterColour == "black")
+            {
+                _blackCounters += 1;
+            }
+            else
+            {
+                _whiteCounters += 1;
+            }
+        }
     }
 }

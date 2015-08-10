@@ -4,6 +4,7 @@
     {
         private readonly Player<Counter> _player1;
         private readonly Player<Counter> _player2;
+        private OthelloBoard _board;
         private Player<Counter> _playerWhosTurnItIs;
         private bool _isFinished;
         private int _passCount;
@@ -11,15 +12,16 @@
         public int _player1Score;
         public int _player2Score;
 
-        public Game(Player<Counter> player1, Player<Counter> player2)
+        public Game(OthelloBoard board, Player<Counter> player1, Player<Counter> player2)
         {
             _player1 = player1;
-            _player2 = player2;            
+            _player2 = player2;
+            _board = board; 
             _playerWhosTurnItIs = _player1;
             _passCount = 0;
             _moveCount = 0;
-            _player1Score = 2;
-            _player2Score = 2;
+            _player1Score = _board._blackCounters;
+            _player2Score = _board._whiteCounters;
         }
 
         public Player<Counter> PlayerToPlayNext()
