@@ -12,8 +12,7 @@ namespace Othello.Controllers
 
         public ActionResult NewGame()
         {
-            var boardModel = new BoardModel();
-            return View(boardModel);
+            return View();
         }
 
     }

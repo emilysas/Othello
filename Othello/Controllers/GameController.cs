@@ -10,8 +10,14 @@ namespace Othello.Controllers
 {
     public class GameController : Controller
     {
-        public ActionResult StartGame(BoardModel boardModel)
+        [HttpPost]
+        public ActionResult StartGame(string playerOneName, string playerTwoName)
         {
+            var boardModel = new BoardModel
+            {
+                player1Name = playerOneName,
+                player2Name = playerTwoName
+            };
             var board = new OthelloBoard();
             var player1 = new Player<Counter>(boardModel.player1Name, board, "black");
             var player2 = new Player<Counter>(boardModel.player2Name, board, "white");

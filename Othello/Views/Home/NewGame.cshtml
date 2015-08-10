@@ -15,21 +15,21 @@
 
 
     <section id="form">
-        <form action="Game/StartGame.cshtml" method="post">
+        <form method="post" action="../Game/StartGame">
             <section id="player1">
                 <img id="blackbug" src="../../Assets/Images/bug.png" />
                 <h2>Player 1</h2>
                 <p>(Who like very munch the black beetles):</p>
-                <input type="text" name="player1Name"/>
+                <input type="text" name="playerOneName"/>
             </section>
             <section id="player2">
                 <img id="whitebug" src="../../Assets/Images/whitebug.png" />
                 <h2>Player 2</h2>
                 <p>(Who like munch better the white beetles):</p>
-                <input type="text" name="player2Name"/>
+                <input type="text" name="playerTwoName"/>
             </section>
             <section id="submit">
-                <a href="@Url.Action("StartGame", "Game")">Begin the fun!</a>
+                <input type="submit" value="Begin the fun!">
             </section>
         </form>
     </section>
