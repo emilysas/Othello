@@ -8,6 +8,8 @@
         private bool _isFinished;
         private int _passCount;
         public int _moveCount;
+        public int _player1Score;
+        public int _player2Score;
 
         public Game(Player<Counter> player1, Player<Counter> player2)
         {
@@ -16,6 +18,8 @@
             _playerWhosTurnItIs = _player1;
             _passCount = 0;
             _moveCount = 0;
+            _player1Score = 2;
+            _player2Score = 2;
         }
 
         public Player<Counter> PlayerToPlayNext()
@@ -41,6 +45,15 @@
             NextPlayersTurn();
             _passCount += 1;
         }
+
+        public string Winner()
+        {
+            return _player1Score == _player2Score
+                ? "Draw"
+                : _player1Score > _player2Score
+                    ? _player1.Name
+                    : _player2.Name;
+        } 
 
         private void NextPlayersTurn()
         {

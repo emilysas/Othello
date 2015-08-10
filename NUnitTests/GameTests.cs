@@ -47,6 +47,7 @@ namespace NUnitTests
             Assert.That(game.IsFinished(), Is.EqualTo(true));
         }
 
+        // Need to find a way to test this without having to make _moveCount public
         [Test]
         public void TheGameWillEndWhenTheBoardIsFull()
         {
@@ -55,11 +56,15 @@ namespace NUnitTests
             game.Play("C4");
             Assert.That(game.IsFinished(), Is.EqualTo(true));
         }
-//
-//        [Test]
-//        public void ThePlayerWithTheMostCountersAtTheEndWillWin()
-//        {
-//
-//        }
+
+        [TestCase(20, 44, "Berry")]
+        [TestCase(50, 14, "Emily")]
+        [TestCase(32, 32, "Draw")]
+        public void ThePlayerWithTheMostCountersAtTheEndWillWin(int player1Score, int player2Score, string result)
+        {
+            game._player1Score = player1Score;
+            game._player2Score = player2Score;
+            Assert.That(game.Winner(), Is.EqualTo(result));
+        }
     }
 }
