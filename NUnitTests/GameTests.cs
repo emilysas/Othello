@@ -22,13 +22,13 @@ namespace NUnitTests
             game = new Game(board, player1, player2);
         }
 
-//        [Test]
-//        public void PlayersTakeTurnsToPlay()
-//        {
-//            Assert.That(game.PlayerToPlayNext(), Is.EqualTo(player1));
-//            game.Play("C4");
-//            Assert.That(game.PlayerToPlayNext(), Is.EqualTo(player2));
-//        }
+        [Test]
+        public void PlayersTakeTurnsToPlay()
+        {
+            Assert.That(game.PlayerToPlayNext(), Is.EqualTo(player1));
+            game.Play("C4");
+            Assert.That(game.PlayerToPlayNext(), Is.EqualTo(player2));
+        }
 
         [Test]
         public void IfAPlayerPassesThenTheySkipTheirTurn()

@@ -1,6 +1,6 @@
 ﻿@Styles.Render("~/Assets/CSS/Game.css")
 @Scripts.Render("~/Assets/JS/GamePlay.js")
-@model Othello.Models.BoardModel
+@model Othello.Models.GameModel
 
 @{
     ViewBag.Title = "title";
@@ -8,8 +8,8 @@
 
 <section class="player" id="player1">
     <img id="blackbug"src="../../Assets/Images/bug.png"/>
-    <h2>@Model.player1Name</h2>
-    <h1 id="player1Count">2</h1>
+    <h2>@Model.player1.Name</h2>
+    <h1 id="player1Count">@Model.game.Player1Score</h1>
     <img id="meerkat1" src="../../Assets/Images/maiya.png" />
 </section>
 
@@ -86,8 +86,8 @@
 
 <section class="player" id="player2">
     <img id="whitebug"src="../../Assets/Images/whitebug.png"/>
-    <h2>@Model.player2Name</h2>
-    <h1 id="player2Count">2</h1>
+    <h2>@Model.player2.Name</h2>
+    <h1 id="player2Count">@Model.game.Player2Score</h1>
     <img id="meerkat2" src="../../Assets/Images/oleg.png"/>
 </section>
 
