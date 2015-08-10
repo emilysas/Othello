@@ -1,5 +1,4 @@
 ﻿@Styles.Render("~/Assets/CSS/NewGame.css")
-@model Othello.Models.BoardModel
 @{
     ViewBag.Title = "New Game";
 }
@@ -16,21 +15,23 @@
 
 
     <section id="form">
-        <section id="player1">
-            <img id="blackbug" src="../../Assets/Images/bug.png"/>
-            <h2>Player 1</h2>
-            <p>(Who like very munch the black beetles):</p>
-            @Html.TextBoxFor(m => m.player1Name)
-        </section>
-        <section id="player2">
-            <img id="whitebug" src="../../Assets/Images/whitebug.png"/>
-            <h2>Player 2</h2>
-            <p>(Who like munch better the white beetles):</p>
-            @Html.TextBoxFor(m => m.player2Name)
-        </section>
-        <section id="submit">
-            <a href="@Url.Action("StartGame", "Game")">Begin the fun!</a>
-        </section>
+        <form action="Game/StartGame.cshtml" method="post">
+            <section id="player1">
+                <img id="blackbug" src="../../Assets/Images/bug.png" />
+                <h2>Player 1</h2>
+                <p>(Who like very munch the black beetles):</p>
+                <input type="text" name="player1Name"/>
+            </section>
+            <section id="player2">
+                <img id="whitebug" src="../../Assets/Images/whitebug.png" />
+                <h2>Player 2</h2>
+                <p>(Who like munch better the white beetles):</p>
+                <input type="text" name="player2Name"/>
+            </section>
+            <section id="submit">
+                <a href="@Url.Action("StartGame", "Game")">Begin the fun!</a>
+            </section>
+        </form>
     </section>
 
 </section>
