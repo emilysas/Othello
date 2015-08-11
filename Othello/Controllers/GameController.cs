@@ -5,7 +5,7 @@ using Othello.Models;
 namespace Othello.Controllers
 {
     public class GameController : Controller
-    {
+    {            
         [HttpPost]
         public ActionResult StartGame(string playerOneName, string playerTwoName)
         {
@@ -21,13 +21,22 @@ namespace Othello.Controllers
                 player2 = playerTwo,
                 game = newGame
             };
+            TempData["currentGame"] = gameModel;
 
             return View(gameModel);
         }
-//        [HttpPost]
-//        public JsonResult Play(Player<Counter> player, string gridRef)
-//        {
-//            Json();
-//        }
+
+        [HttpPost]
+        public ActionResult Play(string gridRef)
+        {
+        // post the gridRef that has been clicked on - client - done
+        // ask the backend if the play is valid
+            var gameModel = ((GameModel)TempData["currentGame"]);
+            gameModel.game.Play(gridRef);
+        // if yes, update model (server) and return as json so javascript can rerender the grid (client)
+       
+        // if no, alert that this is not a valid move
+            return View("_board", gameModel);
+        }
     }
 }

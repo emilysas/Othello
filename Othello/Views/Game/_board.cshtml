@@ -1,0 +1,38 @@
+﻿@model Othello.Models.GameModel
+@*@{Layout=null}*@
+
+@for (int i = 0; i < 8; i++)
+{
+    for (int j = 1; j <= 8; j++)
+    {
+        var gridRef = Convert.ToChar(i + 65) + j.ToString();
+        var contents = Model.board.ViewBoardSquare(gridRef);
+
+        <div class="square" id="@gridRef">
+
+            @if (contents != null)
+            {
+                <img src="../Assets/Images/@(contents.Colour)bug.png" />
+            }
+            else
+            {
+                <img src="" style="display: none;" />
+            }
+        </div>
+    }
+}
+@Scripts.Render("~/Scripts/jquery-1.10.2.js");
+@Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js");
+<Script>
+    $(".square").on("click", function () {
+        var thisId = event.target.id;
+        $.ajax({
+            type: "POST",
+            url: "Play",
+            data: { gridRef: thisId },
+            success: function (boardHtml) {
+                $("#board").html(boardHtml);
+            }
+        });
+    });
+</Script>

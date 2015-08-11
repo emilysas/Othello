@@ -111,7 +111,7 @@
     <Content Include="Assets\CSS\Index.css" />
     <Content Include="Assets\CSS\NewGame.css" />
     <Content Include="Assets\Images\aleksandr-orlov.jpg" />
-    <Content Include="Assets\Images\bug.png" />
+    <Content Include="Assets\Images\blackbug.png" />
     <Content Include="Assets\Images\games.jpg" />
     <Content Include="Assets\Images\maiya.png" />
     <Content Include="Assets\Images\oleg.png" />
@@ -161,6 +161,7 @@
       <SubType>Designer</SubType>
     </Content>
     <None Include="Project_Readme.html" />
+    <Content Include="Views\Game\_board.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClassLibrary\ClassLibrary.csproj">
