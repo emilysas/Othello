@@ -31,13 +31,13 @@ namespace ClassLibrary
             SetUp("E4", blackPiece2);
         }
 
-        private void PlacePiece(string gridRef, Counter pieceType)
+        private void PlacePiece(string gridRef, IPieceType piece)
         {
             Square square = _board[gridRef];
-            square.PlacePiece(pieceType);
+            square.PlacePiece(piece);
         }
 
-        public override void MakePlay(string gridRef, IPieceType pieceToPlay)
+        public override void AcceptPlay(string gridRef, IPieceType pieceToPlay)
         {
             List<Directions> locationOfOpposingCounters = _rules.CheckAtLeastOneNeighbourOfOppositeColour(gridRef,
                 pieceToPlay);

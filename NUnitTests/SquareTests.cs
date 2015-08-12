@@ -9,7 +9,7 @@ namespace UnitTests
 
         [TestCase("black", "white")]
         [TestCase("white", "black")]
-        [TestCase("empty", "empty")]
+
         public void ASquareKnowsItsContents(string newContents, string originalContents)
         {
             var square = new Square();

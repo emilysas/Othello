@@ -1,16 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using ClassLibrary;
+﻿using ClassLibrary;
+using Newtonsoft.Json;
 
 namespace Othello.Models
 {
     public class GameModel
     {
+        [JsonProperty("board")]
         public OthelloBoard board { get; set; }
-        public Player<Counter> player1 { get; set; }
-        public Player<Counter> player2 { get; set; }
+        [JsonProperty("player1")]
+        public Player player1 { get; set; }
+        [JsonProperty("player2")]
+        public Player player2 { get; set; }
+        [JsonProperty("game")]
         public Game game { get; set; } 
 
     }

@@ -5,33 +5,57 @@
 @{
     ViewBag.Title = "title";
 }
+  <section class="player" id="player1">
+    @{Html.RenderPartial("_player1", Model);}
+  </section>
 
-<section class="player" id="player1">
-    <img id="blackbug"src="../../Assets/Images/blackbug.png"/>
-    <h2>@Model.player1.Name</h2>
-    <h1 id="player1Count">@Model.game.Player1Score</h1>
-    <img id="meerkat1" src="../../Assets/Images/maiya.png" />
-</section>
+    <section id="gametable">
 
-<section id="gametable">
+        <section id="board">
+            @{Html.RenderPartial("_board", Model);}
+        </section>
 
-    <section id="board">
-       @{Html.RenderPartial("_board", Model);}
     </section>
 
-</section>
+    <section class="player" id="player2">
+        @{Html.RenderPartial("_player2", Model);}
+    </section>
 
-<section class="player" id="player2">
-    <img id="whitebug"src="../../Assets/Images/whitebug.png"/>
-    <h2>@Model.player2.Name</h2>
-    <h1 id="player2Count">@Model.game.Player2Score</h1>
-    <img id="meerkat2" src="../../Assets/Images/oleg.png"/>
-</section>
+    @Scripts.Render("~/Scripts/jquery-1.10.2.js");
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js");
+    @*@Scripts.Render("~/Assets/JS/GamePlay.js");*@
+    @Styles.Render("~/Assets/CSS/Game.css")
+<script>
+    $(".square").on("click", function () {
+        var thisId = event.target.id;
+        $.ajax({
+            type: "POST",
+            url: "Play",
+            data: { gridRef: thisId },
+            success: function (boardHtml) {
+                $("#board").html(boardHtml);
+            }
+        });
 
-@Scripts.Render("~/Scripts/jquery-1.10.2.js");
-@Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js");
-@*@Scripts.Render("~/Assets/JS/GamePlay.js");*@
-@Styles.Render("~/Assets/CSS/Game.css")
+        $.ajax({
+            type: "POST",
+            url: "GetScores",
+            data: {player: 1},
+            success: function (player1Html) {
+                $("#player1").html(player1Html);
+            }
+        });
+
+        $.ajax({
+            type: "POST",
+            url: "GetScores",
+            data: { player: 2 },
+            success: function (player2Html) {
+                $("#player2").html(player2Html);
+            }
+        });
+    });
+</script>
 
 
 

@@ -11,7 +11,7 @@ namespace ClassLibrary
         public OthelloRuleBook(OthelloBoard board)
         {
             _board = board;
-            _gridRefFinder = new GridRefFinder(_board);
+            _gridRefFinder = new GridRefFinder();
         } 
 
         public Dictionary<Directions, List<IPieceType>> CheckAlongCompassPoints(string originalGridRef, List<Directions> locations, IPieceType pieceToPlay )
@@ -24,7 +24,7 @@ namespace ClassLibrary
                 var gridRef = originalGridRef;
                 do
                 {
-                    var neighbouringCounter = _gridRefFinder.NeighbouringSquare(direction, gridRef);
+                    var neighbouringCounter = _gridRefFinder.NeighbouringSquare(direction, gridRef, _board);
                     if (neighbouringCounter == null)
                         break;
                     if (neighbouringCounter.Colour != pieceToPlay.Colour)
@@ -50,7 +50,7 @@ namespace ClassLibrary
             foreach (Directions direction in compasspoints)
             {
 
-                    var neighbouringCounter = _gridRefFinder.NeighbouringSquare(direction, gridRef);
+                    var neighbouringCounter = _gridRefFinder.NeighbouringSquare(direction, gridRef, _board);
                     if (neighbouringCounter != null && neighbouringCounter.Colour != pieceToPlay.Colour)
                     {
                         locationOfOpposingCounters.Add(direction);

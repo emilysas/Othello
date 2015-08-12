@@ -23,16 +23,3 @@
 }
 @Scripts.Render("~/Scripts/jquery-1.10.2.js");
 @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js");
-<Script>
-    $(".square").on("click", function () {
-        var thisId = event.target.id;
-        $.ajax({
-            type: "POST",
-            url: "Play",
-            data: { gridRef: thisId },
-            success: function (boardHtml) {
-                $("#board").html(boardHtml);
-            }
-        });
-    });
-</Script>

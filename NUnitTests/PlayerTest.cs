@@ -6,14 +6,12 @@ namespace UnitTests
     [TestFixture]
     public class PlayerTest
     {
-        private OthelloBoard board;
-        private Player<Counter> player;
+        private Player player;
 
         [SetUp]
         public void Init()
         {
-            board = new OthelloBoard();
-            player = new Player<Counter>("Emily", board, "black");
+            player = new Player("Emily", "black");
         }
 
 //        [Test]

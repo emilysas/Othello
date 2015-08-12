@@ -7,20 +7,14 @@ namespace ClassLibrary
 {
     public class GridRefFinder
     {
-        private Board _board;
 
-        public GridRefFinder(Board board)
-        {
-            _board = board;
-        }
-
-       public IPieceType NeighbouringSquare(Directions direction, string gridRefOfCurrentSquare)
+       public IPieceType NeighbouringSquare(Directions direction, string gridRefOfCurrentSquare, IBoard board)
        {
            string neighbourGridRef = FindGridRef(direction, gridRefOfCurrentSquare);
 
-           if (_board.ViewBoardSquare(neighbourGridRef) != null)
+           if (board.ViewBoardSquare(neighbourGridRef) != null)
            {
-               return _board.ViewBoardSquare(neighbourGridRef);
+               return board.ViewBoardSquare(neighbourGridRef);
            }
            return null;
        }

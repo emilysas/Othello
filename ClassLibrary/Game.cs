@@ -2,28 +2,21 @@
 {
     public class Game
     {
-        private readonly Player<Counter> _player1;
-        private readonly Player<Counter> _player2;
+        private readonly Player _player1;
+        private readonly Player _player2;
         private OthelloBoard _board;
-        private Player<Counter> _playerWhosTurnItIs;
+        public Player PlayerToPlayNext { get; set; }
         private int _passCount;
         public int Player1Score { get; set; }
         public int Player2Score { get; set; }
 
-        public Game(OthelloBoard board, Player<Counter> player1, Player<Counter> player2)
+        public Game(OthelloBoard board, Player player1, Player player2)
         {
             _player1 = player1;
             _player2 = player2;
             _board = board; 
-            _playerWhosTurnItIs = _player1;
+            PlayerToPlayNext = _player1;
             _passCount = 0;
-            Player1Score = 2;
-            Player2Score = 2;
-        }
-
-        public Player<Counter> PlayerToPlayNext()
-        {
-            return _playerWhosTurnItIs;
         }
 
         public bool IsFinished()
@@ -31,13 +24,18 @@
             return _passCount == 2 || Player1Score + Player2Score == 64;
         }
 
-        public void Play(string gridRef)
+        public void Play(OthelloBoard board, Player player1, Player player2, string gridRef, IPieceType piece)
         {
-            _playerWhosTurnItIs.Play(gridRef);
+            PlayerToPlayNext.Play(board, gridRef, piece);
             _passCount = 0;
-            Player1Score = _board.BlackCounters;
-            Player2Score = _board.WhiteCounters;
+            UpdateScores(player1, player2);
             NextPlayersTurn();
+        }
+
+        private void UpdateScores(Player player1, Player player2)
+        {
+            player1.Score = _board.BlackCounters;
+            player2.Score = _board.WhiteCounters;
         }
 
         public void Pass()
@@ -57,7 +55,7 @@
 
         private void NextPlayersTurn()
         {
-            _playerWhosTurnItIs = (_playerWhosTurnItIs == _player1) ? _player2 : _player1;
+            PlayerToPlayNext = (PlayerToPlayNext == _player1) ? _player2 : _player1;
         }
     }
 }

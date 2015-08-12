@@ -8,8 +8,8 @@ namespace NUnitTests
     public class GameTests
     {
        
-        private Player<Counter> player1;
-        private Player<Counter> player2;
+        private Player player1;
+        private Player player2;
         private OthelloBoard board;
         private Game game;
 
@@ -17,25 +17,25 @@ namespace NUnitTests
         public void Init()
         {
             board = new OthelloBoard();
-            player1 = new Player<Counter>("Emily", board, "black");
-            player2 = new Player<Counter>("Berry", board, "white");
+            player1 = new Player("Emily", "black");
+            player2 = new Player("Berry", "white");
             game = new Game(board, player1, player2);
         }
 
         [Test]
         public void PlayersTakeTurnsToPlay()
         {
-            Assert.That(game.PlayerToPlayNext(), Is.EqualTo(player1));
-            game.Play("C4");
-            Assert.That(game.PlayerToPlayNext(), Is.EqualTo(player2));
+            Assert.That(game.PlayerToPlayNext, Is.EqualTo(player1));
+            game.Play(board, player1, player2, "C4", new Counter() { Colour = "black" });
+            Assert.That(game.PlayerToPlayNext, Is.EqualTo(player2));
         }
 
         [Test]
         public void IfAPlayerPassesThenTheySkipTheirTurn()
         {
-            Assert.That(game.PlayerToPlayNext(), Is.EqualTo(player1));
+            Assert.That(game.PlayerToPlayNext, Is.EqualTo(player1));
             game.Pass();
-            Assert.That(game.PlayerToPlayNext(), Is.EqualTo(player2));
+            Assert.That(game.PlayerToPlayNext, Is.EqualTo(player2));
         }
 
         [Test]
@@ -61,10 +61,10 @@ namespace NUnitTests
         [Test]
         public void TheGameWillKeepScore()
         {
-            game.Play("C4");
+            game.Play(board, player1, player2, "C4", new Counter{Colour = "black"});
             Assert.That(game.Player1Score, Is.EqualTo(4));
             Assert.That(game.Player2Score, Is.EqualTo(1));
-            game.Play("E3");
+            game.Play(board, player1, player2, "E3", new Counter{Colour = "white"});
             Assert.That(game.Player1Score, Is.EqualTo(3));
             Assert.That(game.Player2Score, Is.EqualTo(3));
         }

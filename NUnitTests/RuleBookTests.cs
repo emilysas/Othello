@@ -15,7 +15,7 @@ namespace UnitTests
             var board = new OthelloBoard();
 
             var counter = new Counter {Colour = "black"};
-            board.MakePlay(gridRef, counter);
+            board.AcceptPlay(gridRef, counter);
             Assert.That(board.ViewBoardSquare(gridRef) == counter, Is.EqualTo(result));
         }
 
@@ -27,17 +27,17 @@ namespace UnitTests
             var counter2 = new Counter {Colour = "white"};
             var counter3 = new Counter {Colour = "black"};
             var counter4 = new Counter {Colour = "white"};
-            board.MakePlay("E3", counter1);
+            board.AcceptPlay("E3", counter1);
             Assert.That(board.ViewBoardSquare("E3"), Is.Not.EqualTo(counter1));
-            board.MakePlay("D3", counter1);
+            board.AcceptPlay("D3", counter1);
             Assert.That(board.ViewBoardSquare("D3"), Is.EqualTo(counter1));
-            board.MakePlay("D2", counter2);
+            board.AcceptPlay("D2", counter2);
             Assert.That(board.ViewBoardSquare("D2"), Is.Not.EqualTo(counter2));
-            board.MakePlay("C3", counter2);
+            board.AcceptPlay("C3", counter2);
             Assert.That(board.ViewBoardSquare("C3"), Is.EqualTo(counter2));
-            board.MakePlay("C4", counter3);
+            board.AcceptPlay("C4", counter3);
             Assert.That(board.ViewBoardSquare("C4"), Is.EqualTo(counter3));
-            board.MakePlay("E3", counter4);
+            board.AcceptPlay("E3", counter4);
             Assert.That(board.ViewBoardSquare("E3"), Is.EqualTo(counter4));
         }
     }
