@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
-using System.Security;
-using System.Security.Authentication;
+using System.Linq;
+
+// move RuleBook out and AcceptPlay out. Shouldn't be responsibility of Board.
 
 namespace ClassLibrary
 {
-    public class OthelloBoard : Board
+    public class OthelloBoard : Board, IOthelloBoard
     {
-        private OthelloRuleBook _rules;
+        private readonly OthelloRuleBook _rules;
         public int BlackCounters { get; set; }
         public int WhiteCounters { get; set; }
 
@@ -33,37 +34,34 @@ namespace ClassLibrary
 
         private void PlacePiece(string gridRef, IPieceType piece)
         {
-            Square square = _board[gridRef];
+            var square = _board[gridRef];
             square.PlacePiece(piece);
         }
 
         public override void AcceptPlay(string gridRef, IPieceType pieceToPlay)
         {
-            List<Directions> locationOfOpposingCounters = _rules.CheckAtLeastOneNeighbourOfOppositeColour(gridRef,
+            var locationOfOpposingCounters = _rules.CheckAtLeastOneNeighbourOfOppositeColour(gridRef,
                 pieceToPlay);
-            if (locationOfOpposingCounters.Count > 0)
-            {
-                Dictionary<Directions, List<IPieceType>> countersAlongLine = _rules.CheckAlongCompassPoints(gridRef,
-                    locationOfOpposingCounters, pieceToPlay);
-                if (countersAlongLine.Count > 0)
-                {
-                    PlacePiece(gridRef, (Counter)pieceToPlay);
-                    IncrememtOwnScore(pieceToPlay.Colour);
-                    FlipCounters(countersAlongLine);
-                }
-            }
+
+            if (locationOfOpposingCounters.Count <= 0) return;
+
+            var countersAlongLine = _rules.CheckAlongCompassPoints(gridRef,
+                locationOfOpposingCounters, pieceToPlay);
+
+            if (countersAlongLine.Count <= 0) return;
+
+            PlacePiece(gridRef, (Counter)pieceToPlay);
+            IncrememtOwnScore(pieceToPlay.Colour);
+            FlipCounters(countersAlongLine);
         }
 
         private void FlipCounters(Dictionary<Directions, List<IPieceType>> countersAlongLine)
         {
-            foreach (List<IPieceType> countersToTurn in countersAlongLine.Values)
+            foreach (var counter in countersAlongLine.Values.SelectMany(countersToTurn => countersToTurn))
             {
-                foreach (IPieceType counter in countersToTurn)
-                {
-                    ((Counter) counter).Flip();
-                    IncrememtOwnScore(counter.Colour);
-                    DecreaseOpponentsScore(counter.Colour);
-                }
+                ((Counter)counter).Flip();
+                IncrememtOwnScore(counter.Colour);
+                DecreaseOpponentsScore(counter.Colour);
             }
         }
 

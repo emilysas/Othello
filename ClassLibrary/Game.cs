@@ -2,15 +2,15 @@
 {
     public class Game
     {
-        private readonly Player _player1;
-        private readonly Player _player2;
-        private OthelloBoard _board;
-        public Player PlayerToPlayNext { get; set; }
+        private readonly IPlayer _player1;
+        private readonly IPlayer _player2;
+        private readonly IOthelloBoard _board;
+        public IPlayer PlayerToPlayNext { get; set; }
         private int _passCount;
         public int Player1Score { get; set; }
         public int Player2Score { get; set; }
 
-        public Game(OthelloBoard board, Player player1, Player player2)
+        public Game(IOthelloBoard board, IPlayer player1, IPlayer player2)
         {
             _player1 = player1;
             _player2 = player2;
@@ -24,7 +24,7 @@
             return _passCount == 2 || Player1Score + Player2Score == 64;
         }
 
-        public void Play(OthelloBoard board, Player player1, Player player2, string gridRef, IPieceType piece)
+        public void Play(IOthelloBoard board, IPlayer player1, IPlayer player2, string gridRef, IPieceType piece)
         {
             PlayerToPlayNext.Play(board, gridRef, piece);
             _passCount = 0;
@@ -32,7 +32,7 @@
             NextPlayersTurn();
         }
 
-        private void UpdateScores(Player player1, Player player2)
+        private void UpdateScores(IPlayer player1, IPlayer player2)
         {
             player1.Score = _board.BlackCounters;
             player2.Score = _board.WhiteCounters;

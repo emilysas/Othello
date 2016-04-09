@@ -16,10 +16,10 @@ namespace Othello.Controllers
 
             var gameModel = new GameModel
             {
-                board = gameBoard,
-                player1 = playerOne,
-                player2 = playerTwo,
-                game = newGame
+                Board = gameBoard,
+                Player1 = playerOne,
+                Player2 = playerTwo,
+                Game = newGame
             };
             Session["currentGame"] = gameModel;
             return View(gameModel);
@@ -29,8 +29,8 @@ namespace Othello.Controllers
         public ActionResult Play(string gridRef)
         {
             var gameModel = (GameModel)Session["currentGame"];
-            var counterColour = gameModel.game.PlayerToPlayNext.PlayingColour;
-            gameModel.game.Play(gameModel.board, gameModel.player1, gameModel.player2, gridRef, new Counter(){Colour = counterColour});
+            var counterColour = gameModel.Game.PlayerToPlayNext.PlayingColour;
+            gameModel.Game.Play(gameModel.Board, gameModel.Player1, gameModel.Player2, gridRef, new Counter(){Colour = counterColour});
             Session["currentGame"] = gameModel;
             return PartialView("_board", gameModel);
         }

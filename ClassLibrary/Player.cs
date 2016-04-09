@@ -1,10 +1,6 @@
-﻿
-using System.Security;
-using System.Xml.Schema;
-
-namespace ClassLibrary
+﻿namespace ClassLibrary
 {
-    public class Player
+    public class Player : IPlayer
     {
         private IBoard _board;
 
